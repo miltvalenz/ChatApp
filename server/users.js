@@ -55,12 +55,14 @@ const getUser = (id) => {
 }; 
 
 /**
- * Function to user from room.
+ * Function to get users in room.
  * @param {string} room 
- * @returns {oject} user
+ * @returns {Array} users
  */
-const getUserInRoom = (room) => {
+const getUsersInRoom = (room) => {
     users.filter((user) => {
         user.room === room;
     });
 };
+
+module.exports = { addUser, removeUSer, getUser, getUsersInRoom };
