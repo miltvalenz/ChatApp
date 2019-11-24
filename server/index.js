@@ -17,15 +17,28 @@ const io = socketio(server);
 io.on('connection', (socket) => {
     console.log('New Connection!!!');
 
+    /**
+     * Create and Join new users to room
+     */
     socket.on('join', ({ name, room }, callback) => {
-        const { err, user } = addUser({ id: socket.id, name, room});
+        const { error, user } = addUser({ id: socket.id, name, room});
 
         if(error) {
             return callback(error);
         }
 
+        // Emit message of welcome to new user joined to the room
+        socket.emit('message', { user: 'admin', text: `${user.name}, Welcome to the room ${user.room}`});
+
+        // Emit message of all user on the room about the new user joined
+        socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined!`});
+
         socket.join(user.room);
+
+        callback();
     });
+
+    
 
     socket.on('disconnect', () => {
         console.log('Left Connection!!!');
