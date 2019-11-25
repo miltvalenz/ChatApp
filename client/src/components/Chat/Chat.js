@@ -70,13 +70,13 @@ const Chat = ({ location }) => {
 
     return(
         <div className="outerContainer">
-            <InfoBar room={room}/>
-            {/*<div className="container">
+            <div className="container">
+                <InfoBar room={room}/>
                 <input value={message} 
                     onChange={ event => setMessage(event.target.value)}
                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 />
-            </div>*/}
+            </div>
         </div>
     )
 }
