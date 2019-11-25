@@ -27,20 +27,20 @@ io.on('connection', (socket) => {
             return callback(error);
         }
 
+        socket.join(user.room);
+
         // Emit message of welcome to new user joined to the room
         socket.emit('message', { user: 'admin', text: `${user.name}, Welcome to the room ${user.room}`});
 
         // Emit message of all user on the room about the new user joined
         socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined!`});
 
-        socket.join(user.room);
-
         callback();
     });
 
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id);
-
+        console.log('adsd' + user);
         io.to(user.room).emit('message', { user: user.name, text: message});
         callback();
     });

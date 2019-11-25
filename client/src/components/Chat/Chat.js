@@ -51,7 +51,7 @@ const Chat = ({ location }) => {
     // Manage all messages on the room
     useEffect(() => {
         socket.on('message', (message) => {
-            setMessage([...messages, message]);
+            setMessages([...messages, message]);
         });
     }, [messages]);
 
