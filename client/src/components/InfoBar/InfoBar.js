@@ -1,5 +1,8 @@
 import React from 'react';
 
+import closeIcon from '../../icons/closeIcon.png';
+import onLineIcon from '../../icons/onlineIcon.png';
+
 import './InfoBar.css';
 
 const InfoBar = () => {
